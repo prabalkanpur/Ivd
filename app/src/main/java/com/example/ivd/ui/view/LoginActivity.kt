@@ -34,8 +34,13 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResponse.observe(this) { response ->
             Log.d("prabal_login", response.toString())
             if (response != null) {
-                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                Toast.makeText(this, "Welcome ${response.user.name}", Toast.LENGTH_SHORT).show()
+                if (response.user.status == 1){
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    Toast.makeText(this, "Welcome ${response.user.name}", Toast.LENGTH_SHORT).show()
+                }else{
+                    startActivity(Intent(this@LoginActivity, UserDashBoardActivity::class.java))
+                    Toast.makeText(this, "Welcome ${response.user.name}", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
             }
