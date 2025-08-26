@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ivd.R
+import com.example.ivd.adapter.DistrictAdapter
+import com.example.ivd.adapter.ZoneAdapter
 import com.example.ivd.data.DistrictRequest
 import com.example.ivd.databinding.VendorRegistrationFormBinding
 import com.example.ivd.repository.DistrictRepository
@@ -24,7 +26,6 @@ class VendorRegistrationFormFragment : Fragment() {
     private val binding get() = _binding // Non-nullable backing property
     private lateinit var districtViewModel: DistrictViewModel
 
-    //val languages = requireContext().resources.getStringArray(R.array.select_zone)
     val items = listOf("East Zone", "West Zone", "North Zone", "South Zone")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,10 +72,7 @@ class VendorRegistrationFormFragment : Fragment() {
         initViewModel()
         setupObservers()
 
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_item, items
-        )
+        val adapter = ZoneAdapter(requireContext(), items)
 
         binding.spinnerZone.adapter = adapter
 
@@ -124,11 +122,8 @@ class VendorRegistrationFormFragment : Fragment() {
 
                         // Extract only names
                         val names = districtList.map { it.name }
-                        val adapter = ArrayAdapter(
-                            requireContext(),
-                            android.R.layout.simple_spinner_item, names
-                        )
 
+                        val adapter = DistrictAdapter(requireContext(), names)
                         binding.spinnerDistrict.adapter = adapter
 
                     } else {

@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.ivd.R
+import com.example.ivd.adapter.UserTypeAdapter
+import com.example.ivd.adapter.ZoneAdapter
 import com.example.ivd.data.UserRegistrationRequest
 import com.example.ivd.databinding.ActivityRegistrationBinding
 import com.example.ivd.repository.UserRepository
@@ -39,13 +41,7 @@ class RegistrationActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     }
 
     private fun initView() {
-        val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            userTypes
-        ).apply {
-            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
+        val adapter = UserTypeAdapter(this, userTypes)
         binding.spinnerUserType.adapter = adapter
         binding.spinnerUserType.onItemSelectedListener = this
     }

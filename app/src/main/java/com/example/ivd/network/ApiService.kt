@@ -12,6 +12,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -21,6 +22,10 @@ interface ApiService {
     @POST("login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
+    /*@GET("districts")
+    suspend fun getDistrict(@Body request: DistrictRequest): Response<DistrictResponse>*/
     @GET("districts")
-    suspend fun getDistrict(@Body request: DistrictRequest): Response<DistrictResponse>
+    suspend fun getDistrict(
+        @Query("zone") stateId: String
+    ): Response<DistrictResponse>
 }

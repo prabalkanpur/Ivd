@@ -7,6 +7,6 @@ import retrofit2.Response
 
 class DistrictRepository {
     suspend fun district(request: DistrictRequest): Response<DistrictResponse> {
-        return RetrofitClient.api.getDistrict(request)
+        return RetrofitClient.api.getDistrict(request.toString())
     }
 }
