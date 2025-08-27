@@ -28,11 +28,11 @@ class CategoryAddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoryAdapter = CategoryAdapter(requireContext(), zoneList)
-        binding.spinnerCategory.adapter = categoryAdapter
+        //val categoryAdapter = CategoryAdapter(requireContext(), zoneList)
+        //binding.spinnerCategory.adapter = categoryAdapter
 
-        val sunCategoryAdapter = SubCategoryAdapter(requireContext(), zoneList)
-        binding.spinnerSubCategory.adapter = sunCategoryAdapter
+        //val sunCategoryAdapter = SubCategoryAdapter(requireContext(), zoneList)
+        //binding.spinnerSubCategory.adapter = sunCategoryAdapter
 
         binding.btnSave.setOnClickListener {
 

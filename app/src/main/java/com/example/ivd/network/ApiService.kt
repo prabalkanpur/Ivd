@@ -1,12 +1,14 @@
 package com.example.ivd.network
 
 
+import com.example.ivd.data.CategoryResponse
 import com.example.ivd.data.LoginRequest
 import com.example.ivd.data.LoginResponse
 import com.example.ivd.data.UserRegistrationRequest
 import com.example.ivd.data.UserRegistrationResponse
 import com.example.ivd.data.DistrictRequest
 import com.example.ivd.data.DistrictResponse
+import com.example.ivd.data.SubCategoryResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -28,4 +30,12 @@ interface ApiService {
     suspend fun getDistrict(
         @Query("zone") stateId: String
     ): Response<DistrictResponse>
+
+    @GET("categories")
+    suspend fun getCategory(): Response<CategoryResponse>
+
+    @GET("categories")
+    suspend fun getSubcategory(
+        @Query("parent_id") category_id: String
+    ): Response<SubCategoryResponse>
 }

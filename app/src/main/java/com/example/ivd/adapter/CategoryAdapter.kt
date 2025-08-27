@@ -23,7 +23,7 @@ class CategoryAdapter (private val context: Context, private val items: List<Str
         val view = inflater.inflate(R.layout.category_adapter, parent, false)
 
         val item = getItem(position)
-        val text = view.findViewById<TextView>(R.id.district_name)
+        val text = view.findViewById<TextView>(R.id.category_name)
         text.text = item.toString()
 
         return view

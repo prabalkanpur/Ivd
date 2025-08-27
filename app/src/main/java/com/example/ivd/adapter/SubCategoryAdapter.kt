@@ -1,31 +1,46 @@
 package com.example.ivd.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ivd.R
+import com.example.ivd.data.SubCategory
 
-class SubCategoryAdapter (private val context: Context, private val items: List<String>) : BaseAdapter() {
+class SubCategoryAdapter(private val context: Context, private val items: List<SubCategory>) :
+    RecyclerView.Adapter<SubCategoryAdapter.ViewHolder>() {
 
-    override fun getCount(): Int = items.size
+    // create new views
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        // inflates the card_view_design view
+        // that is used to hold list item
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.sub_category_adapter, parent, false)
 
-    override fun getItem(position: Int): Any = items[position]
-
-    override fun getItemId(position: Int): Long = position.toLong()
-
-    @SuppressLint("ViewHolder", "MissingInflatedId")
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.sub_category_adapter, parent, false)
-
-        val item = getItem(position)
-        val text = view.findViewById<TextView>(R.id.district_name)
-        text.text = item.toString()
-
-        return view
+        return ViewHolder(view)
     }
+
+
+    // binds the list items to a view
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        //val ItemsViewModel = mList[position]
+
+        // sets the image to the imageview from our itemHolder class
+        //holder.imageView.setImageResource(R.drawable.vendor_image)
+        holder.suncategoryName.text = items[position].name
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    // Holds the views for adding it to image and text
+    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        //val imageView: ImageView = itemView.findViewById(R.id.vendor_imageview)
+        val suncategoryName: TextView = itemView.findViewById(R.id.sub_category_name)
+    }
+
 }
