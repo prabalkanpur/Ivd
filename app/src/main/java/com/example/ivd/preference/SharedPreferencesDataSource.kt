@@ -10,6 +10,7 @@ class SharedPreferencesDataSource(context: Context) {
     private val KEY_USERNAME = "username"
     private val KEY_EMAIL = "email"
     private val KEY_PASSWORD = "email"
+    private val KEY_ID = "id"
 
     private val sharedPref: SharedPreferences =
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -36,6 +37,14 @@ class SharedPreferencesDataSource(context: Context) {
 
     fun getPassword(): String? {
         return sharedPref.getString(KEY_PASSWORD, null)
+    }
+
+    fun saveId(id: Int) {
+        sharedPref.edit { putInt(KEY_PASSWORD, id) }
+    }
+
+    fun getId(): Int? {
+        return sharedPref.getInt(KEY_PASSWORD, 0)
     }
 
 

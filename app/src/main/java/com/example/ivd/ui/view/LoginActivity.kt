@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ivd.R
 import com.example.ivd.data.LoginRequest
 import com.example.ivd.databinding.ActivityLoginBinding
+import com.example.ivd.preference.SharedPreferencesDataSource
 import com.example.ivd.repository.AuthRepository
 import com.example.ivd.viewmodel.LoginViewModel
 import com.example.ivd.viewmodelfactory.LoginViewModelFactory
@@ -19,10 +20,11 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
-
+    private lateinit var  prefManager: SharedPreferencesDataSource
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        prefManager = SharedPreferencesDataSource(this)
 
         initViewModel()
         setupObservers()
@@ -35,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
             Log.d("prabal_login", response.toString())
             if (response != null) {
                 if (response.user.status == 1){
+                    prefManager.saveId(response.user.id)
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     Toast.makeText(this, "Welcome ${response.user.name}", Toast.LENGTH_SHORT).show()
                 }else{
@@ -104,5 +107,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 }

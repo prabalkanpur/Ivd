@@ -2,18 +2,20 @@ package com.example.ivd.network
 
 
 import com.example.ivd.data.CategoryResponse
+import com.example.ivd.data.DistrictResponse
 import com.example.ivd.data.LoginRequest
 import com.example.ivd.data.LoginResponse
+import com.example.ivd.data.SubCategoryResponse
 import com.example.ivd.data.UserRegistrationRequest
 import com.example.ivd.data.UserRegistrationResponse
-import com.example.ivd.data.DistrictRequest
-import com.example.ivd.data.DistrictResponse
-import com.example.ivd.data.SubCategoryResponse
+import com.example.ivd.data.VendorDetailRegistrationFormRequest
+import com.example.ivd.data.VendorDetailResponse
+import com.example.ivd.data.VendorRegisterFormResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
-
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -38,4 +40,17 @@ interface ApiService {
     suspend fun getSubcategory(
         @Query("parent_id") category_id: String
     ): Response<SubCategoryResponse>
+
+    @POST("register/vendor")
+    suspend fun vendorDetailForm(@Body request: VendorDetailRegistrationFormRequest): Response<VendorRegisterFormResponse>
+
+    /*@GET("vendor")
+    suspend fun vendorDetail(
+        @Query("id") vendorId: String
+    ): Response<VendorDetailResponse>*/
+
+    @GET("vendor/{id}")
+    suspend fun vendorDetail(
+        @Path("id") id: Int
+    ): Response<VendorDetailResponse>
 }

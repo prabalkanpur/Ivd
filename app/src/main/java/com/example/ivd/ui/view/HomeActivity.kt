@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
-                    loadFragment(VendorListFragment())
+                    loadFragment(VendorProfileFragment())
                     true
                 }
 

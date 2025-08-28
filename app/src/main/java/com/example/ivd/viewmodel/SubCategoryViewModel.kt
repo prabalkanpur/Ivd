@@ -23,6 +23,7 @@ class SubCategoryViewModel(private val repository: SubCategoryRepository) : View
             try {
                 val response = repository.subCategory(request)
                 if (response.isSuccessful) {
+                    Log.d("Prabal","parent_id_api: SubCategoryViewModel")
                     _subCategoryResponse.postValue(response.body())
                 } else {
                     Log.d("SubCategoryViewModel", "SubCategoryViewModel failed")
